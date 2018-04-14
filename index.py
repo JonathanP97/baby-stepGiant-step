@@ -9,11 +9,9 @@ def get_answer(n, g, p):
     T = int(math.sqrt(p))
     print('!!!!!!!  Now solving {n}^x = {g} mod {p}  !!!!!!!\n'.format(n = n, g =g, p=p))
     
-    #Generates 'traps' and appends to list
-    # for i in range(0,(T+5)):
-    for i in range(0, T):
-        # if i % 100 == 0:
-        #     print('At', i, 'steps')
+    # Generates 'traps' and appends to list
+    ### too much time
+    for i in range(0,100):
         temp = i*T
         y = (n**(temp)) % p
         large_steps.append(y)
@@ -21,7 +19,7 @@ def get_answer(n, g, p):
     print('Here are your large steps', large_steps, '\nLooking for multiples now...\n')
 
     # Baby Steps
-    for i in range(0,T):
+    for i in range(0,T):    
         # if i % 100 == 0:
         #     print('At ', i, 'steps')
         x = g*n**i % p
@@ -33,13 +31,9 @@ def get_answer(n, g, p):
             answer = b_steps - i
             return '''{x} appears twice\n{g}* (2^{i}) mod {p} = {x} = {n} ^ {b} mod {p}  It took {i} steps so...\n{n}^{a} = {g} mod {p}'''.format(x =x, g =g, i =i, p =p, n =n, a =answer,b = b_steps)                    
         
-
-baby_steps = []
-large_steps = []
-
 print(get_answer(2, 37, 101))
 print(get_answer(3, 26, 463))
+print(get_answer(5, 122104, 859051))
 
 # not working 
-# print(get_answer(5, 122104, 859051))
-# print(get_answer(7, 9777493488, 57688682951))
+### print(get_answer(7, 9777493488, 57688682951))
